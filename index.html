@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-y: hidden;
+        }
+        .center{
+            display: grid;
+        }
+        .center h1{
+            text-align: center;
+            font-size: 20px;
+            font-family:'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="center">
+        <label for="number">Enter a number: </label>
+        <input class="num" type="number" id="number">
+        <h1> </h1>
+    </div>
+
+    <script>
+       let input = document.querySelector('input')
+       let value = parseInt(input.value)
+       let even = []
+       let odd = []
+
+
+       let  message = document.querySelector('h1')
+            input.addEventListener('keyup', function(){
+
+                if(parseInt(input.value) < 0){
+                    message.replaceChildren('please enter positive value')
+                    message.style.color =  'red'
+                }
+                else if(parseInt(input.value) > 0){
+                    if(parseInt(input.value) % 2 == 0){
+                        for(let i = parseInt(input.value)+1; i <= parseInt(input.value) + 6 ; i++){
+                            if(i  % 2 == 0){
+                                even.push(i)
+                            }
+                        }
+                        message.replaceChildren(`next 3 even numbers after ${input.value} are: ${even}`)
+                        even = []
+                        message.style.color = 'black'
+                    }
+                 else if(parseInt(input.value) % 2 !== 0){
+                        message.append('next three odds numbers are: ')
+                        for(let i = parseInt(input.value)+1; i<= parseInt(input.value) + 6; i++){
+                            if(i % 2 != 0){
+                                odd.push(i)
+                            }
+                        }
+                        message.replaceChildren(`next three ODD number after ${input.value} are: ${odd}`)
+                            odd = []
+                            message.style.color = 'blue'
+                    }
+                }
+
+                
+            })
+
+    </script>
+    
+</body>
+</html>
